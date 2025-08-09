@@ -21,7 +21,7 @@ jobs:
           "tag=$tag" | Out-File -Append -FilePath $Env:GITHUB_ENV
           
       - name: Set up .NET
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.0.x
 
@@ -31,16 +31,15 @@ jobs:
           Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
 
       - name: Restore Nuget Packages
-        run: dotnet restore Advanced_Rotations/RabbsRotationsNET8.csproj
+        run: dotnet restore RabbsRotations/RabbsRotations.csproj
 
       - name: Build Rotations
-        run: dotnet build --no-restore -c Release Advanced_Rotations/RabbsRotationsNET8.csproj -p:AssemblyVersion=${{ env.tag }} -p:FileVersion=${{ env.tag }} -p:InformationalVersion=${{ env.tag }} --output .\build
+        run: dotnet build --no-restore -c Release RabbsRotations/RabbsRotations.csproj -p:AssemblyVersion=${{ env.tag }} -p:FileVersion=${{ env.tag }} -p:InformationalVersion=${{ env.tag }} --output .\build
 
       - name: Publish Rotations
-        uses: softprops/action-gh-release@v2.2.2
+        uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./build/RabbsRotationsNET8.dll
-            ./build/RabbsRotationsNET8.pdb
+            ./build/RabbsRotations.dll
+            ./build/RabbsRotations.pdb
           token: ${{ secrets.GITHUB_TOKEN }}
-

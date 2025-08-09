@@ -1,17 +1,8 @@
-﻿
-using Jobgauge = FFXIVClientStructs.FFXIV.Client.Game.Gauge;
-using System.ComponentModel;
-using FFXIVClientStructs.FFXIV.Client.Game.Gauge;
-using FFXIVClientStructs.FFXIV.Client.Game.Group;
-using Dalamud.Game.ClientState.Party;
-using FFXIVClientStructs.FFXIV.Client.Game.Object;
-using RotationSolver.Basic.Actions;
-
-namespace RabbsRotationsNET8.Magical;
+﻿namespace RabbsRotations.Magical;
 
 [Rotation("Rabbs SMN", CombatType.PvE, GameVersion = "6.58")]
-[SourceCode(Path = "main/DefaultRotations/Magical/SMN_Default.cs")]
-[Api(5)]
+[SourceCode(Path = "main/RabbsRotations/Ranged_Magic/SMN_Default.cs")]
+[Api(6)]
 public sealed class SMN_Default : SummonerRotation
 {
     #region Config Options

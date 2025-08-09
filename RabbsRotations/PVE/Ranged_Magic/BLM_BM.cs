@@ -1,34 +1,15 @@
-﻿using Dalamud.Game.ClientState.Objects;
-using Dalamud.Game.ClientState.Objects.SubKinds;
-using Dalamud.Utility.Signatures;
-using ExCSS;
-using FFXIVClientStructs.FFXIV.Client.Game;
-using FFXIVClientStructs.FFXIV.Client.Game.Character;
-using FFXIVClientStructs.FFXIV.Client.Game.Gauge;
-using FFXIVClientStructs.FFXIV.Client.Game.Group;
+﻿using FFXIVClientStructs.FFXIV.Client.Game;
 using FFXIVClientStructs.FFXIV.Client.Game.Object;
-using FFXIVClientStructs.FFXIV.Client.Game.UI;
+using Dalamud.Bindings.ImGui;
 using Lumina.Excel.Sheets;
 using Lumina.Excel.Sheets.Experimental;
-using RotationSolver.Basic.Data;
-using RotationSolver.Basic.Rotations.Basic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
-using System.Runtime.Serialization;
-using static Dalamud.Interface.Utility.Raii.ImRaii;
-using static DefaultRotations.Magical.BobRoss;
-using static FFXIVClientStructs.FFXIV.Client.UI.Misc.DataCenterHelper;
 
-
-
-
-namespace RabbsRotationsNET8.Magical;
+namespace RabbsRotations.Magical;
 [Rotation("Rabbs Mage", CombatType.PvE, GameVersion = "7.25")]
-[SourceCode(Path = "main/BasicRotations/Magical/BLM_Beta.cs")]
-[Api(5)]
+[SourceCode(Path = "main/RabbsRotations/Ranged_Magic/BLM_BM.cs")]
+[Api(6)]
 
 public sealed class BLM_Gamma : BlackMageRotation
 {
@@ -899,10 +880,10 @@ public sealed class BLM_Gamma : BlackMageRotation
     #region Black Magic
 
     #endregion
-    public unsafe override void DisplayStatus()
+    public unsafe override void DisplayRotationStatus()
     {
         //motif
-        ImGui.Text("GCDTime " + GCDTime);
+        ImGui.Text("GCDTime " + GCDTime());
         ImGui.Text("WeaponElapsed " + WeaponElapsed);
         ImGui.Text("NextAbilityToNextGCD " + NextAbilityToNextGCD);
         ImGui.Text("AoeCount " + AoeCount);
@@ -912,8 +893,6 @@ public sealed class BLM_Gamma : BlackMageRotation
         ImGui.Text("isInOpener" + isInOpener);
         ImGui.Text("ManafontPvE.Cooldown.RecastTimeElapsed" + ManafontPvE.Cooldown.RecastTimeElapsed);
 
-
-
-        base.DisplayStatus();
+        base.DisplayRotationStatus();
     }
 }
